@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Background Video Dengan HTML5 dan JQuery | Jurnalweb.com</title>
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+
+<video autoplay poster="Big-City-Life.jpg" id="bgvid" loop>
+<!-- loop ditambahkan agar video diputar ulang jika sudah selesai  -->
+<source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Big-City-Life.webm" type="video/webm">
+<source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Big-City-Life.mp4" type="video/mp4">
+</video>
+<div id="citylife">
+	<h1>Big City Life</h1>
+	<p>Credit video by Coverr</p>
+	<p><a href="http://www.jurnalweb.com/background-video-full-screen-html5-jquery">Lihat tutorial di Jurnalweb.com</a></p>
+	<p>Ini adalah contoh pembuatan video sebagai background website dengan menggunakan HTML5 dan JQuery</p>
+	<p>Gunakan video yang tidak terlalu panjang durasinya agar ukurannya lebih kecil dan tidak berat ketika di buka</p>
+	<button>Pause</button>
+</div>
+
+<script type="text/javascript">
+	var vid = document.getElementById("bgvid");
+	var pauseButton = document.querySelector("#citylife button");
+
+	function vidFade() {
+	  vid.classList.add("stopfade");
+	}
+
+	vid.addEventListener('ended', function()
+	{
+	// only functional if "loop" is removed 
+	vid.pause();
+	// to capture IE10
+	vidFade();
+	}); 
+
+
+	pauseButton.addEventListener("click", function() {
+	  vid.classList.toggle("stopfade");
+	  if (vid.paused) {
+	    vid.play();
+	    pauseButton.innerHTML = "Pause";
+	  } else {
+	    vid.pause();
+	    pauseButton.innerHTML = "Paused";
+	  }
+	})
+</script>
+</body>
+</html>
